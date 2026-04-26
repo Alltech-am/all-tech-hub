@@ -1,4 +1,5 @@
 import { useState, useRef, KeyboardEvent } from "react";
+import { Link } from "react-router-dom";
 import {
   Plus,
   Paperclip,
@@ -19,11 +20,11 @@ interface ChatComposerProps {
 }
 
 const quickActions = [
-  { label: "Criar slides", icon: Presentation },
-  { label: "Criar site", icon: Globe },
-  { label: "Desenvolver apps desktop", icon: AppWindow },
-  { label: "Design", icon: Palette },
-  { label: "Mais", icon: MoreHorizontal },
+  { label: "Criar slides", icon: Presentation, to: "/slides" },
+  { label: "Criar site", icon: Globe, to: "/site" },
+  { label: "Desenvolver apps desktop", icon: AppWindow, to: "/apps" },
+  { label: "Design", icon: Palette, to: "/design" },
+  { label: "Mais", icon: MoreHorizontal, to: "/mais" },
 ];
 
 export function ChatComposer({ onSubmit }: ChatComposerProps) {
@@ -98,14 +99,14 @@ export function ChatComposer({ onSubmit }: ChatComposerProps) {
         {quickActions.map((a) => {
           const Icon = a.icon;
           return (
-            <button
+            <Link
               key={a.label}
-              onClick={() => onSubmit(a.label)}
+              to={a.to}
               className="flex items-center gap-1.5 rounded-full border border-border bg-card/60 px-3.5 py-1.5 text-xs text-foreground/85 transition-base hover:border-primary/40 hover:bg-card hover:text-foreground"
             >
               <Icon className="h-3.5 w-3.5 text-muted-foreground" />
               {a.label}
-            </button>
+            </Link>
           );
         })}
       </div>

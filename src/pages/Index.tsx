@@ -27,7 +27,7 @@ const Index = () => {
         <section className="relative flex flex-1 flex-col items-center justify-center px-6 pb-16">
           <div className="mb-10 animate-fade-in text-center">
             <h1 className="font-display text-5xl italic tracking-tight text-foreground sm:text-6xl">
-              O que posso fazer por <span className="bg-gradient-to-r from-primary to-primary-glow bg-clip-text text-transparent">você</span>?
+              Em que <span className="bg-gradient-to-r from-primary to-primary-glow bg-clip-text text-transparent">projeto</span> vamos trabalhar?
             </h1>
             <p className="mt-3 text-sm text-muted-foreground">
               Atribua tarefas, crie agentes e organize projetos com IA.
@@ -39,10 +39,6 @@ const Index = () => {
               <ChatComposer onSubmit={handleSubmit} />
             </div>
           </div>
-
-          <footer className="mt-10 text-[11px] text-muted-foreground/70">
-            All Tech pode cometer erros. Verifique informações importantes.
-          </footer>
         </section>
       </main>
     </div>
