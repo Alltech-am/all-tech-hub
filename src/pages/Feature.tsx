@@ -1,4 +1,4 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { ArrowLeft, LucideIcon } from "lucide-react";
 import { AppSidebar } from "@/components/Sidebar";
 import { TopBar } from "@/components/TopBar";
@@ -19,8 +19,6 @@ export default function FeaturePage({
   icon: Icon,
   examples = [],
 }: FeaturePageProps) {
-  const location = useLocation();
-
   return (
     <div className="flex h-screen w-full overflow-hidden bg-background">
       <AppSidebar onNewTask={() => toast("Nova tarefa", { description: "Comece digitando abaixo." })} />
