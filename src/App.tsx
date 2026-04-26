@@ -16,6 +16,7 @@ import Library from "./pages/Library.tsx";
 import NewTask from "./pages/NewTask.tsx";
 import NewProject from "./pages/NewProject.tsx";
 import Tasks from "./pages/Tasks.tsx";
+import Integrations from "./pages/Integrations.tsx";
 
 const queryClient = new QueryClient();
 
@@ -38,6 +39,7 @@ const App = () => (
           <Route path="/apps" element={<Apps />} />
           <Route path="/design" element={<Design />} />
           <Route path="/mais" element={<More />} />
+          <Route path="/integracoes" element={<Integrations />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
