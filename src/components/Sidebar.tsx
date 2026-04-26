@@ -1,42 +1,36 @@
-import { useState } from "react";
 import {
   Plus,
   Search,
   BookOpen,
   Sparkles,
-  Folder,
   Settings,
   Plug,
   UserCircle2,
   Gift,
-  ChevronRight,
 } from "lucide-react";
+import { NavLink, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
 
 interface SidebarProps {
   onNewTask: () => void;
 }
 
-const projects = [{ id: "1", name: "All Tech — Plataforma" }];
-
 export function AppSidebar({ onNewTask }: SidebarProps) {
-  const [active, setActive] = useState("agent");
-
   const menu = [
-    { id: "agent", label: "Agent", icon: Sparkles, badge: "Novo" },
-    { id: "search", label: "Pesquisar", icon: Search },
-    { id: "library", label: "Biblioteca", icon: BookOpen },
+    { to: "/agent", label: "Agent", icon: Sparkles, badge: "Novo" },
+    { to: "/pesquisar", label: "Pesquisar", icon: Search },
+    { to: "/biblioteca", label: "Biblioteca", icon: BookOpen },
   ];
 
   return (
     <aside className="flex h-screen w-[260px] shrink-0 flex-col border-r border-sidebar-border bg-sidebar text-sidebar-foreground">
       {/* Brand */}
-      <div className="flex items-center gap-2 px-4 pt-5 pb-4">
+      <NavLink to="/" className="flex items-center gap-2 px-4 pt-5 pb-4">
         <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-gradient-primary shadow-glow">
           <span className="text-[13px] font-bold text-primary-foreground">A</span>
         </div>
         <span className="text-[15px] font-semibold tracking-tight">All Tech</span>
-      </div>
+      </NavLink>
 
       {/* New task */}
       <div className="px-3">
@@ -58,17 +52,18 @@ export function AppSidebar({ onNewTask }: SidebarProps) {
       <nav className="mt-5 px-2">
         {menu.map((item) => {
           const Icon = item.icon;
-          const isActive = active === item.id;
           return (
-            <button
-              key={item.id}
-              onClick={() => setActive(item.id)}
-              className={cn(
-                "group flex w-full items-center gap-2.5 rounded-lg px-3 py-2 text-sm transition-base",
-                isActive
-                  ? "bg-sidebar-accent text-sidebar-accent-foreground"
-                  : "text-sidebar-foreground/75 hover:bg-sidebar-accent/60 hover:text-sidebar-foreground"
-              )}
+            <NavLink
+              key={item.to}
+              to={item.to}
+              className={({ isActive }) =>
+                cn(
+                  "group flex w-full items-center gap-2.5 rounded-lg px-3 py-2 text-sm transition-base",
+                  isActive
+                    ? "bg-sidebar-accent text-sidebar-accent-foreground"
+                    : "text-sidebar-foreground/75 hover:bg-sidebar-accent/60 hover:text-sidebar-foreground"
+                )
+              }
             >
               <Icon className="h-4 w-4" />
               <span className="flex-1 text-left">{item.label}</span>
@@ -77,7 +72,7 @@ export function AppSidebar({ onNewTask }: SidebarProps) {
                   {item.badge}
                 </span>
               )}
-            </button>
+            </NavLink>
           );
         })}
       </nav>
@@ -92,16 +87,9 @@ export function AppSidebar({ onNewTask }: SidebarProps) {
             <Plus className="h-3.5 w-3.5" />
           </button>
         </div>
-        {projects.map((p) => (
-          <button
-            key={p.id}
-            className="group flex w-full items-center gap-2.5 rounded-lg px-3 py-2 text-sm text-sidebar-foreground/75 transition-base hover:bg-sidebar-accent/60 hover:text-sidebar-foreground"
-          >
-            <Folder className="h-4 w-4" />
-            <span className="flex-1 truncate text-left">{p.name}</span>
-            <ChevronRight className="h-3.5 w-3.5 opacity-0 transition-base group-hover:opacity-60" />
-          </button>
-        ))}
+        <div className="rounded-lg px-3 py-2 text-xs text-muted-foreground">
+          Nenhum projeto ainda
+        </div>
       </div>
 
       {/* Tasks */}
