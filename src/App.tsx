@@ -13,6 +13,9 @@ import More from "./pages/More.tsx";
 import Agent from "./pages/Agent.tsx";
 import Search from "./pages/Search.tsx";
 import Library from "./pages/Library.tsx";
+import NewTask from "./pages/NewTask.tsx";
+import NewProject from "./pages/NewProject.tsx";
+import Tasks from "./pages/Tasks.tsx";
 
 const queryClient = new QueryClient();
 
@@ -24,6 +27,9 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
+          <Route path="/nova-tarefa" element={<NewTask />} />
+          <Route path="/projetos/novo" element={<NewProject />} />
+          <Route path="/tarefas" element={<Tasks />} />
           <Route path="/agent" element={<Agent />} />
           <Route path="/pesquisar" element={<Search />} />
           <Route path="/biblioteca" element={<Library />} />
